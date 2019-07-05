@@ -10,10 +10,7 @@ class HomeViews:
 
     def __init__(self, request):
         self.request = request    
-
-    @property
-    def db(self):
-        return self.request.db
+        self.db = request.db
 
     @view_config(route_name='home', 
                  renderer='/templates/home.jinja2')
@@ -40,11 +37,8 @@ class HomeViews:
 class VideoViews:
 
     def __init__(self, request):
-        self.request = request    
-
-    @property
-    def db(self):
-        return self.request.db
+        self.request = request
+        self.db = request.db
 
     def _update_thumbs(self, id, field):
         id = ObjectId(self.request.matchdict['id'])
@@ -74,10 +68,7 @@ class ThemeViews:
 
     def __init__(self, request):
         self.request = request
-
-    @property
-    def db(self):
-        return self.request.db
+        self.db = request.db
 
     @view_config(route_name='themes',
                  renderer='templates/themes.jinja2')
