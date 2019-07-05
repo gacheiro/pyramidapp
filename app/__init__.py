@@ -15,6 +15,8 @@ def main(global_config, **settings):
         port=db_url.port,
     )
 
+    # add the db to request as a attribute
+    # so we can access as `request.db` inside views
     def add_db(request):
         db = config.registry.db[db_url.path[1:]]
         if db_url.username and db_url.password:
