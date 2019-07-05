@@ -1,0 +1,43 @@
+{% extends "templates/layout.jinja2" %}
+{% block content %}
+<h2>My Youtube videos</h2>
+
+<div>
+<div>
+    <h3>Add new video</h3>
+    <form action="/add" method="post">
+        <dt>Video name</dt>
+        <input type="text" name="name" value="">
+        <dt>Theme</dt>
+        <input type="text" name="theme" value="">
+        <input type="submit">
+    </form>
+</div>
+
+<div>
+    <h2>Latest videos</h2>
+    {% for video in videos %}
+        <article>
+            <header>
+                <div class="header">
+                <p><h3>{{ video.name }}</h3>
+                    <span">{{ video.theme }}</span>
+                    <h4>{{ video.thumbs_up }} thumbs up</h4>
+                    <h4>{{ video.thumbs_down }} thumbs down</h4></p>
+                </div>
+            </header>
+            <footer>
+                <div>
+                <form method="POST" action="/videos/{{ video._id }}/thumbs_up">
+                    <input type="submit" value="Thumbs up">
+                </form>
+                <form method="POST" action="/videos/{{ video._id }}/thumbs_down">
+                    <input type="submit" value="Thumbs down">
+                </form>
+                </div>
+            </footer>
+        </article>
+    {% endfor %}
+<div>
+</div>
+{% endblock content %}

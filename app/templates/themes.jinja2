@@ -1,0 +1,18 @@
+{% extends "templates/layout.jinja2" %}
+
+{% block content %}
+<h2>Most popular themes</h2>
+  
+{% for theme in themes %}
+    <article>
+        <header>
+            <div class="header">
+            <div class>
+                <h3>{{ theme._id }}</h3>
+                <h6>{{ theme.score }} score</h6>
+            </div>
+        </header>
+    </article>
+{% endfor %}
+
+{% endblock content %}
