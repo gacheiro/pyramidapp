@@ -15,6 +15,7 @@ class HomeViews:
     @view_config(route_name='home', 
                  renderer='/templates/home.jinja2')
     def home(self):
+        """Returns all videos sorted by date desc."""
         videos = self.db.videos.find().sort('date', -1)
         return {
             'videos': list(videos),  # list, so we can compare in the unittest
@@ -73,6 +74,9 @@ class ThemeViews:
     @view_config(route_name='themes',
                  renderer='templates/themes.jinja2')
     def themes(self):
+        """Returns themes sorted by score. Score is the sum of 
+        thumbs_up - (thumbs_down / 2) for each video in the theme."""
+
         themes = self.db.videos.aggregate([
             {
                 '$group': {
@@ -96,5 +100,5 @@ class ThemeViews:
             }
         ])
         return {
-            'themes': list(themes),
+            'themes': list(themes), # list, so we can compare in the unittest
         }
