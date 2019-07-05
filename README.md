@@ -32,6 +32,7 @@ Now you can run the app with:
 ```
   pserve development.ini --reload
 ```
+You should be able to visit the home page at ```http://localhost:6543/```
 
 # Running tests
 To run the tests use:
